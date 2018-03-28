@@ -5,18 +5,17 @@ import main.java.Persons.Manager;
 import main.java.Persons.Person;
 
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Scanner;
 
 public class AppHandler {
 
-    private List<Person> createPerson(){
+    private LinkedList<Person> persons = new LinkedList<>();
 
-        List<Person> persons = new LinkedList<>();
+    private LinkedList<Person> createPerson(){
 
         Scanner in = new Scanner(System.in);
         System.out.println("Add Employer or Manager?");
-        String answer  = in.next();
+        String answer  = in.nextLine();
 
         if (answer.equals("Employeer")){
 
@@ -55,6 +54,18 @@ public class AppHandler {
         }else{
             System.out.println("Wrong answer! Try again!");
         }
+        return persons;
+    }
+    private LinkedList<Person> deletePerson(){
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter 'first' or 'last' to delete the corresponding item:");
+        String  answer = in.nextLine();
+        if(answer.equals("first")){
+            persons.removeFirst();
+        }
+        if (answer.equals("last"))
+            persons.removeLast();
+
         return persons;
     }
 }
