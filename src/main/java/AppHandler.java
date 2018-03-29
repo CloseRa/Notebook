@@ -4,68 +4,64 @@ import main.java.Persons.Employer;
 import main.java.Persons.Manager;
 import main.java.Persons.Person;
 
-import java.util.LinkedList;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 
-public class AppHandler {
+public class AppHandler implements Constants {
 
-    private LinkedList<Person> persons = new LinkedList<>();
+    private ArrayList<Person> persons;
 
-    private LinkedList<Person> createPerson(){
+    private ArrayList<Person> createPerson() {
+        try {
+            persons = new ArrayList<>();
 
-        Scanner in = new Scanner(System.in);
-        System.out.println("Add Employer or Manager?");
-        String answer  = in.nextLine();
+            BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+            System.out.println(CHOOSE);
+            String answer = in.readLine();
 
-        if (answer.equals("Employeer")){
+            if (answer.equals(EMPLOYER)) {
 
-            System.out.println("Enter a name: ");
-            String name = in.nextLine();
-            System.out.println("Enter a surname ");
-            String surname = in.nextLine();
-            System.out.println("Enter a date of birthday ");
-            int birthDate = in.nextInt();
-            System.out.println("Enter a phone number ");
-            int phoneNum = in.nextInt();
-            System.out.println("Enter a manager ");
-            String manager = in.nextLine();
+                System.out.println(ENTERNAME);
+                String name = in.readLine();
+                System.out.println(ENTERSURNAME);
+                String surname = in.readLine();
+                System.out.println(ENTERDATEOFBIRTHDAY);
+                int birthDate = Integer.parseInt(in.readLine());
+                System.out.println(ENTERPHONE);
+                int phoneNum = Integer.parseInt(in.readLine());
+                System.out.println(ENTERMANAGER);
+                String manager = in.readLine();
 
-            persons.add(new Employer(name, surname, phoneNum, birthDate, manager));
+                persons.add(new Employer(name, surname, phoneNum, birthDate, manager));
 
-            System.out.println("Employer: Name - " + name + "Surname - " + surname + "Phone number - " + phoneNum
-                    + "Date of birthDay - " + birthDate + "Manager" + manager);
+                System.out.println(EMPLOYER + NAME + name + SURNAME + surname + PHONENUMBER + phoneNum
+                        + DATEOFBIRTHDAY + birthDate + MANAGER + manager);
+            }
+            if (answer.equals(MANAGER)) {
+                System.out.println(ENTERNAME);
+                String name = in.readLine();
+                System.out.println(ENTERSURNAME);
+                String surname = in.readLine();
+                System.out.println(ENTERDATEOFBIRTHDAY);
+                int birthDate = Integer.parseInt(in.readLine());
+                System.out.println(ENTERPHONE);
+                int phoneNum = Integer.parseInt(in.readLine());
+                System.out.println(ENTERDEPARTMENT);
+                String department = in.readLine();
+
+                persons.add(new Manager(name, surname, phoneNum, birthDate, department));
+
+                System.out.println(EMPLOYER + NAME + name + SURNAME + surname + PHONENUMBER + phoneNum
+                        + DATEOFBIRTHDAY + birthDate + DEPARTMENT + department);
+
+            } else {
+                System.out.println(WRONGANSWER);
+            }
+        }catch (IOException ex){
+            System.out.println(ex.getMessage());
         }
-        if (answer.equals("Manager")){
-            System.out.println("Enter a name: ");
-            String name = in.nextLine();
-            System.out.println("Enter a surname ");
-            String surname = in.nextLine();
-            System.out.println("Enter a date of birthday ");
-            int birthDate = in.nextInt();
-            System.out.println("Enter a phone number ");
-            int phoneNum = in.nextInt();
-            System.out.println("Enter a department ");
-            String department = in.nextLine();
-
-            persons.add(new Manager(name, surname, phoneNum, birthDate, department));
-
-            System.out.println("Employer: Name - " + name + "Surname - " + surname + "Phone number - " + phoneNum
-                    + "Date of birthDay - " + birthDate + "Department" + department);
-        }else{
-            System.out.println("Wrong answer! Try again!");
-        }
-        return persons;
-    }
-    private LinkedList<Person> deletePerson(){
-        Scanner in = new Scanner(System.in);
-        System.out.println("Enter 'first' or 'last' to delete the corresponding item:");
-        String  answer = in.nextLine();
-        if(answer.equals("first")){
-            persons.removeFirst();
-        }
-        if (answer.equals("last"))
-            persons.removeLast();
-
         return persons;
     }
 }
