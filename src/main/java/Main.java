@@ -1,7 +1,5 @@
 package main.java;
 
-import main.java.Persons.Store;
-
 import java.io.*;
 
 public class Main {
