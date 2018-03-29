@@ -1,6 +1,7 @@
 package main.java;
 
 import main.java.Persons.Employer;
+import main.java.Persons.Store;
 import main.java.Persons.Manager;
 import main.java.Persons.Person;
 
@@ -11,13 +12,18 @@ import java.util.ArrayList;
 
 public class AppHandler implements Constants {
 
-    private ArrayList<Person> persons;
+    private Store store;
 
-    private ArrayList<Person> createPerson() {
+    BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+
+    public AppHandler(){
+
+    }
+
+    private Store createPerson() {
         try {
-            persons = new ArrayList<>();
+            store = new Store();
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
             System.out.println(CHOOSE);
             String answer = in.readLine();
 
@@ -34,7 +40,7 @@ public class AppHandler implements Constants {
                 System.out.println(ENTERMANAGER);
                 String manager = in.readLine();
 
-                persons.add(new Employer(name, surname, phoneNum, birthDate, manager));
+                getPersons().add(new Employer(name, surname, phoneNum, birthDate, manager));
 
                 System.out.println(EMPLOYER + NAME + name + SURNAME + surname + PHONENUMBER + phoneNum
                         + DATEOFBIRTHDAY + birthDate + MANAGER + manager);
@@ -51,7 +57,7 @@ public class AppHandler implements Constants {
                 System.out.println(ENTERDEPARTMENT);
                 String department = in.readLine();
 
-                persons.add(new Manager(name, surname, phoneNum, birthDate, department));
+                getPersons().add(new Manager(name, surname, phoneNum, birthDate, department));
 
                 System.out.println(EMPLOYER + NAME + name + SURNAME + surname + PHONENUMBER + phoneNum
                         + DATEOFBIRTHDAY + birthDate + DEPARTMENT + department);
@@ -62,6 +68,21 @@ public class AppHandler implements Constants {
         }catch (IOException ex){
             System.out.println(ex.getMessage());
         }
-        return persons;
+        return store;
+    }
+    private Store deletePerson(){
+        System.out.println(ENTERDELETE);
+        try {
+            String answer = in.readLine();
+            if(answer.equals(DELETE)){
+                getPersons().remove(getPersons().size()-1);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return store;
+    }
+    public ArrayList<Person> getPersons() {
+        return getPersons();
     }
 }

@@ -16,4 +16,6 @@ public interface Constants {
     String MANAGER = "Manager";
     String DEPARTMENT = "Department: ";
     String WRONGANSWER = "Wrong answer! Try again!";
+    String ENTERDELETE = "Enter 'delete' to remove last added";
+    String DELETE = "delete";
 }
