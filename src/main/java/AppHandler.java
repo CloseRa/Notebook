@@ -18,7 +18,7 @@ public class AppHandler implements Constants {
 
     }
 
-    private Store createPerson() {
+    private void createPerson() {
         try {
             store = new Store();
             in = new BufferedReader(new InputStreamReader(System.in));
@@ -67,9 +67,8 @@ public class AppHandler implements Constants {
         }catch (IOException ex){
             System.out.println(ex.getMessage());
         }
-        return store;
     }
-    private Store deletePerson(){
+    private void deletePerson(){
         try {
             in = new BufferedReader(new InputStreamReader(System.in));
             System.out.println(ENTERDELETE);
@@ -80,6 +79,5 @@ public class AppHandler implements Constants {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return store;
     }
 }
