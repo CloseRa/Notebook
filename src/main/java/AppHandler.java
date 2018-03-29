@@ -15,7 +15,8 @@ public class AppHandler implements Constants {
     private BufferedReader in;
 
     public AppHandler(){
-
+        createPerson();
+        deletePerson();
     }
 
     private void createPerson() {

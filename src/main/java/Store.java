@@ -2,7 +2,7 @@ package main.java;
 
 import main.java.Persons.Person;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 
 public class Store implements Serializable {
@@ -11,10 +11,32 @@ public class Store implements Serializable {
 
    public Store() {
    }
+   public void Save(){
+      try {
+         FileOutputStream fos = new FileOutputStream("temp.out");
+         ObjectOutputStream oos = new ObjectOutputStream(fos);
+         Store store = new Store();
+         oos.writeObject(store);
+         oos.flush();
+         oos.close();
+      }catch (IOException ex) {
+         System.out.println(ex.getMessage());
+      }
+   }
+   public void Load(){
+      try {
+         FileInputStream fis = new FileInputStream("temp.out");
+         ObjectInputStream ois = new ObjectInputStream(fis);
+         Store store = (Store) ois.readObject();
+         ois.close();
+      }catch (IOException ex){
+         System.out.println(ex.getMessage());
+      }catch (ClassNotFoundException ex1){
+         System.out.println(ex1);
+      }
+   }
 
    public ArrayList<Person> getPersons() {
       return persons;
    }
-
-
 }
