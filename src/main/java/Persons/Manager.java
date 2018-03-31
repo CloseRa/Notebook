@@ -4,8 +4,8 @@ public class Manager extends Person {
 
     private String department;
 
-    public Manager(String name, String surname, int birthDate, int phoneNum, String department) {
-        super(name, surname, birthDate, phoneNum);
+    public Manager(String name, String surname, String phoneNum, String birthDate, String department) {
+        super(name, surname, phoneNum, birthDate);
         this.department = department;
     }
 

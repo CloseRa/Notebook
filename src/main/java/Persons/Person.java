@@ -4,10 +4,10 @@ public abstract class Person {
 
     private String name;
     private String surname;
-    private int birthDate;
-    private int phoneNum;
+    private String birthDate;
+    private String phoneNum;
 
-    public Person (String name, String surname, int birthDate, int phoneNum){
+    public Person (String name, String surname, String phoneNum, String birthDate){
         this.name = name;
         this.surname = surname;
         this.birthDate = birthDate;
@@ -22,11 +22,11 @@ public abstract class Person {
         return surname;
     }
 
-    public int getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public int getPhoneNum() {
+    public String getPhoneNum() {
         return phoneNum;
     }
 }

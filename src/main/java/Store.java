@@ -9,9 +9,16 @@ public class Store implements Serializable {
 
    private ArrayList<Person> persons = new ArrayList<>();
    private String filename = "persons.dat";
+   File f = new File(filename);
 
    public Store() {
+      if (f.exists()){
+         Load();
+      }else{
+         System.out.println("Error");
+      }
    }
+
    public void Save(){
       try {
          FileOutputStream fos = new FileOutputStream(filename);
@@ -24,7 +31,8 @@ public class Store implements Serializable {
          System.out.println(ex.getMessage());
       }
    }
-   public void Load(){
+
+   private void Load(){
       try {
          FileInputStream fis = new FileInputStream(filename);
          ObjectInputStream ois = new ObjectInputStream(fis);

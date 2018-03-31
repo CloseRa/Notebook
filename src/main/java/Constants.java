@@ -10,6 +10,9 @@ public interface Constants {
     String ENTERDEPARTMENT = "Enter a department: ";
     String ENTERMANAGER = "Enter a manager: ";
     String NAME = "Name: ";
+    String BYNAME = "name";
+    String BYSURNAME = "surname";
+    String BYPHONENUM = "phonenum";
     String SURNAME = "Surname: ";
     String DATEOFBIRTHDAY = "Date of birthday: ";
     String PHONENUMBER = "Phone number: ";
@@ -18,4 +21,10 @@ public interface Constants {
     String WRONGANSWER = "Wrong answer! Try again!";
     String ENTERDELETE = "Enter 'delete' to remove last added";
     String DELETE = "delete";
+    String EXIT = "exit";
+    String ENTEREXIT = "Enter 'exit' to exit from programm";
+    String SEARCH = "search";
+    String STARTSEARCH = "Enter 'search' to find person";
+    String ADDPERSON = "add";
+    String SORT = "sort";
 }
