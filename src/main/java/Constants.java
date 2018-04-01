@@ -6,8 +6,8 @@ package main.java;
 public interface Constants {
     String STARTMESSAGE = "Commands :\n add - add person\n delete - delete person\n find - find person by name surname" +
             "or by phone number\n" + " sort - sort by surname or birth date\n exit - close program.";
-    String CHOOSE = "Add employer or manager?\n Commands:\n employer - add employer\n manager - add manager";
-    String EMPLOYER = "employer";
+    String CHOOSE = "Add employee or manager?\n Commands:\n employer - add employer\n manager - add manager";
+    String EMPLOYEE = "employee";
     String ENTERNAME = "Enter a name: ";
     String ENTERSURNAME = "Enter a surname: ";
     String ENTERDATEOFBIRTHDAY = "Enter a date of birthday(dd/mm/yyyy): ";
@@ -27,8 +27,8 @@ public interface Constants {
     String DELETE = "delete";
     String EXIT = "exit";
     String ENTEREXIT = "Enter 'exit' to exit from programm";
-    String SEARCH = "search";
-    String STARTSEARCH = "Enter 'search' to find person";
+    String SEARCH = "find";
+    String STARTSEARCH = "Commands:\n name - search by name\n surname - search by surname\n phonenum - search by phonenum";
     String ADDPERSON = "add";
     String SORT = "sort";
     String BYBIRTHDATE = "birthdate";

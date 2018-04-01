@@ -12,8 +12,9 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static main.java.Constants.*;
 
-public class AppHandler implements Constants {
+public class AppHandler {
 
     private Storage storage;
     Scanner in = new Scanner(System.in);
@@ -49,16 +50,13 @@ public class AppHandler implements Constants {
     private void sortPersons() {
         System.out.println(ENTERSORT);
         String answer = "";
-        try (Scanner in = new Scanner(System.in);) {
-            answer = in.nextLine();
-            if (answer.equals(BYSURNAME)) {
-                answer = in.nextLine();
-                sortPersonsBySurname();
-            }
-            if (answer.equals(BYBIRTHDATE)) {
-                answer = in.nextLine();
-                sortPersonsByBirthDate();
-            }
+        Scanner in = new Scanner(System.in);
+        answer = in.nextLine();
+        if (answer.equals(BYSURNAME)) {
+            sortPersonsBySurname();
+        }
+        if (answer.equals(BYBIRTHDATE)) {
+            sortPersonsByBirthDate();
         }
     }
 
@@ -80,7 +78,7 @@ public class AppHandler implements Constants {
 
     public void showPerson(Person person) {
         if (person instanceof Employee) {
-            System.out.println(EMPLOYER + " " + NAME + person.getName() + ", " + SURNAME + person.getSurname()
+            System.out.println(EMPLOYEE + " " + NAME + person.getName() + ", " + SURNAME + person.getSurname()
                     + ", " + PHONENUMBER + person.getPhoneNum() + ", " + DATEOFBIRTHDAY + person.getBirthDate()
                     + ", " + MANAGER + ": " + ((Employee) person).getManager());
         } else if (person instanceof Manager) {
@@ -105,7 +103,7 @@ public class AppHandler implements Constants {
         System.out.println(CHOOSE);
         String answer = in.nextLine();
 
-        if (answer.equals(EMPLOYER)) {
+        if (answer.equals(EMPLOYEE)) {
 
             System.out.println(ENTERNAME);
             String name = in.nextLine();
@@ -128,7 +126,7 @@ public class AppHandler implements Constants {
 
             storage.getPersons().add(new Employee(name, surname, phoneNum, birthDate, manager));
 
-            System.out.println(EMPLOYER + " " + NAME + name + ", " + SURNAME + surname + ", " + PHONENUMBER + phoneNum
+            System.out.println(EMPLOYEE + " " + NAME + name + ", " + SURNAME + surname + ", " + PHONENUMBER + phoneNum
                     + ", " + DATEOFBIRTHDAY + birthDate + ", " + MANAGER + ": " + manager);
         }
 
@@ -148,7 +146,6 @@ public class AppHandler implements Constants {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-
             System.out.println(ENTERPHONE);
             String phoneNum = in.nextLine();
 
@@ -169,7 +166,7 @@ public class AppHandler implements Constants {
 
     private void deletePerson() {
 
-        Scanner in = new Scanner(System.in);
+        in = new Scanner(System.in);
         System.out.println(ENTERDELETE);
         String answer = in.nextLine();
         if (answer.equals(DELETE)) {
@@ -181,7 +178,7 @@ public class AppHandler implements Constants {
 
         System.out.println(STARTSEARCH);
         String answer = "";
-        Scanner in = new Scanner(System.in);
+        in = new Scanner(System.in);
         answer = in.nextLine();
         if (answer.equals(BYNAME)) {
             answer = in.nextLine();

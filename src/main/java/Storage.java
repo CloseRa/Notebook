@@ -7,11 +7,13 @@ import main.java.Persons.Person;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Storage implements Serializable {
 
    /** Collection for storage persons */
-   private ArrayList<Person> persons = new ArrayList<>();
+   private List<Person> persons = new ArrayList<>();
+   private Storage storage;
    /**
     Specifies the file name */
    private String filename = "persons.txt";
@@ -34,34 +36,40 @@ public class Storage implements Serializable {
       try {
          FileOutputStream fos = new FileOutputStream(filename);
          ObjectOutputStream oos = new ObjectOutputStream(fos);
-         Storage storage = new Storage();
          oos.writeObject(storage);
          oos.flush();
          oos.close();
       }catch (IOException ex) {
-         System.out.println(ex.getMessage());
+         ex.printStackTrace();
       }
    }
    /**
     * Deserialize an object and read him.
     */
    private void Load(){
+       ObjectInputStream ois = null;
       try {
          FileInputStream fis = new FileInputStream(filename);
-         ObjectInputStream ois = new ObjectInputStream(fis);
-         ois.readObject();
-         ois.close();
+         ois = new ObjectInputStream(fis);
+         Person newPerson =(Person)ois.readObject();
+
       }catch (IOException ex){
          System.out.println(ex.getMessage());
       }catch (ClassNotFoundException ex1){
-         System.out.println(ex1);
+          ex1.printStackTrace();
+      }finally {
+          try {
+              ois.close();
+          } catch (IOException e) {
+              e.printStackTrace();
+          }
       }
    }
    /**
     * Function getting an arraylist with employees.
     * @return persons
     */
-   public ArrayList<Person> getPersons() {
+   public List<Person> getPersons() {
       return persons;
    }
 }
