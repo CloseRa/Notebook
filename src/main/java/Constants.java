@@ -6,33 +6,33 @@ package main.java;
  * @autor Vlad
  */
 public interface Constants {
-    String STARTMESSAGE = "Commands :\n add - add person\n delete - delete person\n find - find person by name surname" +
+    String STARTMESSAGE = "Commands :\n add - add person\n del - delete person\n find - find person by name surname" +
             "or by phone number\n" + " sort - sort by surname or birth date\n exit - close program.";
-    String CHOOSE = "Add employee or manager?\n Commands:\n employee - add employee\n manager - add manager";
-    String EMPLOYEE = "employee";
+    String CHOOSE = "Add employee or manager?\n Commands:\n e - add employee\n m - add manager";
+    String EMPLOYEE = "e";
     String ENTERNAME = "Enter a name: ";
     String ENTERSURNAME = "Enter a surname: ";
-    String ENTERBIRTHYEAR = "Enter a date of birthday(dd/mm/yyyy): ";
+    String ENTERBIRTHYEAR = "Enter a year of birthday: ";
     String ENTERPHONE = "Enter a phone number: ";
     String ENTERDEPARTMENT = "Enter a department: ";
     String ENTERMANAGER = "Enter a manager: ";
     String NAME = "Name: ";
-    String BYNAME = "name";
-    String BYSURNAME = "surname";
-    String BYPHONENUM = "phonenum";
+    String BYNAME = "n";
+    String BYSURNAME = "sn";
+    String BYPHONENUM = "pn";
     String SURNAME = "Surname: ";
     String BIRTHYEAR = "Date of birthday: ";
     String PHONENUMBER = "Phone number: ";
-    String MANAGER = "manager";
+    String MANAGER = "m";
     String DEPARTMENT = "Department: ";
-    String ENTERDELETE = "Enter 'delete' to remove last added";
-    String DELETE = "delete";
+    String ENTERDELETE = "Enter 'del' to remove last added";
+    String DELETE = "del";
     String EXIT = "exit";
     String SEARCH = "find";
-    String STARTSEARCH = "Commands:\n name - search by name\n surname - search by surname\n phonenum - search by phonenum";
+    String STARTSEARCH = "Commands:\n n - search by name\n sn - search by surname\n pn - search by phonenum";
     String ADDPERSON = "add";
     String SORT = "sort";
-    String BYBIRTHYEAR = "birthyear";
-    String ENTERSORT = "Enter 'surname' to sort by surname, or 'birthdate' to sort by birthdate";
+    String BYBIRTHYEAR = "bd";
+    String ENTERSORT = "Enter 'sn' to sort by surname, or 'bd' to sort by birthdate";
     String INPUTERROR = "Incorrect data. Try again.";
 }
