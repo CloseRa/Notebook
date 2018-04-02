@@ -1,6 +1,8 @@
 package main.java.Persons;
 
-public class Manager extends Person {
+import java.io.Serializable;
+
+public class Manager extends Person implements Serializable {
 
     private String department;
 

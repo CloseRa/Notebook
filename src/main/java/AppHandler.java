@@ -61,19 +61,11 @@ public class AppHandler {
     }
 
     private void sortPersonsByBirthDate() {
-        storage = new Storage();
-        Collections.sort(storage.getPersons(), Comparator.comparing(Person::getBirthDate));
-        for (Person person : storage.getPersons()) {
-            showPerson(person);
-        }
+        storage.getPersons().stream().sorted(Comparator.comparing(Person::getBirthDate)).forEach(this::showPerson);
     }
 
     private void sortPersonsBySurname() {
-        storage = new Storage();
-        Collections.sort(storage.getPersons(), Comparator.comparing(Person::getSurname));
-        for (Person person : storage.getPersons()) {
-            showPerson(person);
-        }
+        storage.getPersons().stream().sorted(Comparator.comparing(Person::getSurname)).forEach(this::showPerson);
     }
 
     public void showPerson(Person person) {
@@ -195,6 +187,7 @@ public class AppHandler {
     }
 
     private void findPersonByName(String name) {
+        System.out.println(ENTERNAME);
         for (Person person : storage.getPersons()) {
             if (person.getName().equals(name)) {
                 showPerson(person);
@@ -203,6 +196,7 @@ public class AppHandler {
     }
 
     private void findPersonBySurname(String surname) {
+        System.out.println(ENTERSURNAME);
         for (Person person : storage.getPersons()) {
             if (person.getSurname().equals(surname)) {
                 showPerson(person);
@@ -211,6 +205,7 @@ public class AppHandler {
     }
 
     private void findPersonByPhoneNum(String phoneNum) {
+        System.out.println(ENTERPHONE);
         for (Person person : storage.getPersons()) {
             if (person.getPhoneNum().equals(phoneNum)) {
                 showPerson(person);
