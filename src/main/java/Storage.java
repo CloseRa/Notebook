@@ -13,16 +13,22 @@ import java.util.List;
 
 public class Storage implements Serializable {
 
-    /** Collection for storage persons */
+    /**
+     * Collection for storage persons
+     */
     private List<Person> persons = new ArrayList<>();
     /**
-     Specifies the file name */
+     * Specifies the file name
+     */
     private String filename = "persons.txt";
-    /** Create object file with the given name */
-    private File f = new File(filename);
     /**
-     * Constructor storage, performs load, if file exist.*/
+     * Create object file with the given name
+     */
+    private File f = new File(filename);
 
+    /**
+     * Constructor storage, performs load, if file exist.
+     */
     public Storage() {
         if (f.exists()) {
             this.persons = Load().persons;
@@ -30,6 +36,7 @@ public class Storage implements Serializable {
             System.out.println("File not exist");
         }
     }
+
     /**
      * Saves serialized object.
      */
@@ -41,10 +48,11 @@ public class Storage implements Serializable {
             oos.writeObject(this);
             oos.flush();
             oos.close();
-        }catch (IOException ex) {
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
+
     /**
      * Reads the deserialized object.
      */
@@ -57,11 +65,11 @@ public class Storage implements Serializable {
             ois = new ObjectInputStream(fis);
             storage = (Storage) ois.readObject();
 
-        }catch (IOException ex){
+        } catch (IOException ex) {
             System.out.println(ex.getMessage());
-        }catch (ClassNotFoundException ex1){
+        } catch (ClassNotFoundException ex1) {
             ex1.printStackTrace();
-        }finally {
+        } finally {
             try {
                 if (ois != null) {
                     ois.close();
@@ -72,8 +80,10 @@ public class Storage implements Serializable {
         }
         return storage;
     }
+
     /**
      * Function getting an arraylist with employees.
+     *
      * @return persons
      */
 

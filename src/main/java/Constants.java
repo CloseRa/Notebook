@@ -1,6 +1,8 @@
 package main.java;
+
 /**
  * Interface for storing constants
+ *
  * @autor Vlad
  */
 public interface Constants {
@@ -32,4 +34,5 @@ public interface Constants {
     String SORT = "sort";
     String BYBIRTHYEAR = "birthyear";
     String ENTERSORT = "Enter 'surname' to sort by surname, or 'birthdate' to sort by birthdate";
+    String INPUTERROR = "Incorrect data. Try again.";
 }

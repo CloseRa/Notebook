@@ -9,11 +9,20 @@ import java.util.Scanner;
 
 import static main.java.Constants.*;
 
+/**
+ * The class is a handler.
+ *
+ * @autor Vlad
+ */
 public class AppHandler {
 
     private Storage storage;
+
     private Scanner in = new Scanner(System.in);
 
+    /**
+     * Runs main method and processes user commands.
+     */
     void start() {
 
         storage = new Storage();
@@ -44,6 +53,9 @@ public class AppHandler {
         }
     }
 
+    /**
+     * Asks to select an option, how to sort persons.
+     */
     private void sortPersons() {
         System.out.println(ENTERSORT);
         String answer;
@@ -57,14 +69,23 @@ public class AppHandler {
         }
     }
 
+    /**
+     * Sorts persons by their birth years
+     */
     private void sortPersonsByBirthYear() {
         storage.getPersons().stream().sorted(Comparator.comparing(Person::getBirthYear)).forEach(this::showPerson);
     }
 
+    /**
+     * Sorts persons by their surnames
+     */
     private void sortPersonsBySurname() {
         storage.getPersons().stream().sorted(Comparator.comparing(Person::getSurname)).forEach(this::showPerson);
     }
 
+    /**
+     * Checks which instance of an object, employee or manager and prints message about them
+     */
     private void showPerson(Person person) {
         if (person instanceof Employee) {
             System.out.println(EMPLOYEE + " " + NAME + person.getName() + ", " + SURNAME + person.getSurname()
@@ -77,12 +98,18 @@ public class AppHandler {
         }
     }
 
+    /**
+     * Iterates collection persons and calls the method showPerson
+     */
     private void showAllPersons() {
         for (Person person : storage.getPersons()) {
             showPerson(person);
         }
     }
 
+    /**
+     * Reads information from user and create person based on data
+     */
     private void createPerson() {
 
         System.out.println(CHOOSE);
@@ -96,12 +123,16 @@ public class AppHandler {
 
         System.out.println(ENTERBIRTHYEAR);
         int birthDate = Integer.parseInt(in.nextLine());
+        while (birthDate < 1930 || birthDate > 2018) {
+            System.out.println(INPUTERROR);
+            birthDate = Integer.parseInt(in.nextLine());
+        }
 
         System.out.println(ENTERPHONE);
         String phoneNum = in.nextLine();
 
         while (!phoneNum.matches("^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$")) {
-            System.out.println("Sorry, try one more time");
+            System.out.println(INPUTERROR);
             phoneNum = in.nextLine();
         }
         if (answer.equals(EMPLOYEE)) {
@@ -123,6 +154,9 @@ public class AppHandler {
         }
     }
 
+    /**
+     * Deletes last added persons from collection
+     */
     private void deletePerson() {
 
         in = new Scanner(System.in);
@@ -133,6 +167,9 @@ public class AppHandler {
         }
     }
 
+    /**
+     * Asks to select an option, how to find persons.
+     */
     private void findPerson() {
 
         System.out.println(STARTSEARCH);
@@ -153,6 +190,9 @@ public class AppHandler {
         }
     }
 
+    /**
+     * Finds persons by their names
+     */
     private void findPersonByName(String name) {
         System.out.println(ENTERNAME);
         for (Person person : storage.getPersons()) {
@@ -162,6 +202,9 @@ public class AppHandler {
         }
     }
 
+    /**
+     * Finds persons by their surnames
+     */
     private void findPersonBySurname(String surname) {
         System.out.println(ENTERSURNAME);
         for (Person person : storage.getPersons()) {
@@ -171,6 +214,9 @@ public class AppHandler {
         }
     }
 
+    /**
+     * Finds persons by their phone bumbers
+     */
     private void findPersonByPhoneNum(String phoneNum) {
         System.out.println(ENTERPHONE);
         for (Person person : storage.getPersons()) {
@@ -180,6 +226,9 @@ public class AppHandler {
         }
     }
 
+    /**
+     * Exits from programm, and saves all added persons
+     */
     private void Exit() {
         storage.Save();
         System.exit(0);
