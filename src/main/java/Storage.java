@@ -1,8 +1,8 @@
 package main.java;
-/**
- * Class storage for persons.
- *
- * @autor Vlad
+/*
+  Class storage for persons.
+
+  @autor Vlad
  */
 
 import main.java.Persons.Person;
@@ -25,13 +25,13 @@ public class Storage implements Serializable {
 
     public Storage() {
         if (f.exists()) {
-            Load();
+            this.persons = Load().persons;
         } else {
             System.out.println("File not exist");
         }
     }
     /**
-     * Serialize an object and saves it to a file
+     * Saves serialized object.
      */
 
     public void Save() {
@@ -46,15 +46,16 @@ public class Storage implements Serializable {
         }
     }
     /**
-     * Deserialize an object and read him.
+     * Reads the deserialized object.
      */
 
-    private void Load() {
+    private Storage Load() {
         ObjectInputStream ois = null;
+        Storage storage = null;
         try {
             FileInputStream fis = new FileInputStream(filename);
             ois = new ObjectInputStream(fis);
-            ois.readObject();
+            storage = (Storage) ois.readObject();
 
         }catch (IOException ex){
             System.out.println(ex.getMessage());
@@ -69,6 +70,7 @@ public class Storage implements Serializable {
                 e.printStackTrace();
             }
         }
+        return storage;
     }
     /**
      * Function getting an arraylist with employees.

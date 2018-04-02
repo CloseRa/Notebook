@@ -4,22 +4,19 @@ import main.java.Persons.Employee;
 import main.java.Persons.Manager;
 import main.java.Persons.Person;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import static main.java.Constants.*;
 
 public class AppHandler {
 
     private Storage storage;
-    Scanner in = new Scanner(System.in);
+    private Scanner in = new Scanner(System.in);
 
     void start() {
+
+        storage = new Storage();
 
         showAllPersons();
         String answer = "";
@@ -49,40 +46,38 @@ public class AppHandler {
 
     private void sortPersons() {
         System.out.println(ENTERSORT);
-        String answer = "";
+        String answer;
         Scanner in = new Scanner(System.in);
         answer = in.nextLine();
         if (answer.equals(BYSURNAME)) {
             sortPersonsBySurname();
         }
-        if (answer.equals(BYBIRTHDATE)) {
-            sortPersonsByBirthDate();
+        if (answer.equals(BYBIRTHYEAR)) {
+            sortPersonsByBirthYear();
         }
     }
 
-    private void sortPersonsByBirthDate() {
-        storage.getPersons().stream().sorted(Comparator.comparing(Person::getBirthDate)).forEach(this::showPerson);
+    private void sortPersonsByBirthYear() {
+        storage.getPersons().stream().sorted(Comparator.comparing(Person::getBirthYear)).forEach(this::showPerson);
     }
 
     private void sortPersonsBySurname() {
         storage.getPersons().stream().sorted(Comparator.comparing(Person::getSurname)).forEach(this::showPerson);
     }
 
-    public void showPerson(Person person) {
+    private void showPerson(Person person) {
         if (person instanceof Employee) {
             System.out.println(EMPLOYEE + " " + NAME + person.getName() + ", " + SURNAME + person.getSurname()
-                    + ", " + PHONENUMBER + person.getPhoneNum() + ", " + DATEOFBIRTHDAY + person.getBirthDate()
+                    + ", " + PHONENUMBER + person.getPhoneNum() + ", " + BIRTHYEAR + person.getBirthYear()
                     + ", " + MANAGER + ": " + ((Employee) person).getManager());
         } else if (person instanceof Manager) {
             System.out.println(MANAGER + " " + NAME + person.getName() + ", " + SURNAME + person.getSurname() + ", " +
-                    PHONENUMBER + person.getPhoneNum() + ", " + DATEOFBIRTHDAY + person.getBirthDate() + ", " +
+                    PHONENUMBER + person.getPhoneNum() + ", " + BIRTHYEAR + person.getBirthYear() + ", " +
                     DEPARTMENT + ": " + ((Manager) person).getDepartment());
         }
     }
 
-
     private void showAllPersons() {
-        storage = new Storage();
         for (Person person : storage.getPersons()) {
             showPerson(person);
         }
@@ -90,68 +85,40 @@ public class AppHandler {
 
     private void createPerson() {
 
-        storage = new Storage();
-
         System.out.println(CHOOSE);
         String answer = in.nextLine();
 
+        System.out.println(ENTERNAME);
+        String name = in.nextLine();
+
+        System.out.println(ENTERSURNAME);
+        String surname = in.nextLine();
+
+        System.out.println(ENTERBIRTHYEAR);
+        int birthDate = Integer.parseInt(in.nextLine());
+
+        System.out.println(ENTERPHONE);
+        String phoneNum = in.nextLine();
+
+        while (!phoneNum.matches("^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$")) {
+            System.out.println("Sorry, try one more time");
+            phoneNum = in.nextLine();
+        }
         if (answer.equals(EMPLOYEE)) {
-
-            System.out.println(ENTERNAME);
-            String name = in.nextLine();
-            System.out.println(ENTERSURNAME);
-            String surname = in.nextLine();
-            System.out.println(ENTERDATEOFBIRTHDAY);
-            String birthDate = in.nextLine();
-            SimpleDateFormat simpleFormat2 = new SimpleDateFormat("MM/dd/yyyy");
-
-            try {
-                simpleFormat2.parse(birthDate);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-
-            System.out.println(ENTERPHONE);
-            String phoneNum = in.nextLine();
             System.out.println(ENTERMANAGER);
             String manager = in.nextLine();
 
             storage.getPersons().add(new Employee(name, surname, phoneNum, birthDate, manager));
 
-            System.out.println(EMPLOYEE + " " + NAME + name + ", " + SURNAME + surname + ", " + PHONENUMBER + phoneNum
-                    + ", " + DATEOFBIRTHDAY + birthDate + ", " + MANAGER + ": " + manager);
-        }
-
-        if (answer.equals(MANAGER)) {
-            System.out.println(ENTERNAME);
-            String name = in.nextLine();
-
-            System.out.println(ENTERSURNAME);
-            String surname = in.nextLine();
-
-            System.out.println(ENTERDATEOFBIRTHDAY);
-            String birthDate = in.nextLine();
-            SimpleDateFormat simpleFormat2 = new SimpleDateFormat("dd/MM/yyyy");
-
-            try {
-                simpleFormat2.parse(birthDate);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            System.out.println(ENTERPHONE);
-            String phoneNum = in.nextLine();
-
-            String pattern = "^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$";
-            Pattern p = Pattern.compile(pattern);
-            Matcher m = p.matcher(phoneNum);
+            showAllPersons();
+        } else {
 
             System.out.println(ENTERDEPARTMENT);
             String department = in.nextLine();
 
             storage.getPersons().add(new Manager(name, surname, phoneNum, birthDate, department));
 
-            System.out.println(MANAGER + " " + NAME + name + ", " + SURNAME + surname + ", " + PHONENUMBER + phoneNum
-                    + ", " + DATEOFBIRTHDAY + birthDate + ", " + DEPARTMENT + ": " + department);
+            showAllPersons();
 
         }
     }
@@ -169,7 +136,7 @@ public class AppHandler {
     private void findPerson() {
 
         System.out.println(STARTSEARCH);
-        String answer = "";
+        String answer;
         in = new Scanner(System.in);
         answer = in.nextLine();
         if (answer.equals(BYNAME)) {

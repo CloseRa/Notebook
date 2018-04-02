@@ -1,22 +1,25 @@
 package main.java.Persons;
-
+/**
+ * Employee class with properties.
+ *
+ * @autor Vlad
+ */
 public class Employee extends Person {
     /** Field manager, exclusive for employee*/
     private String manager;
 
     /** Constructor - creating a new object with certain values
-     * @param name - employee name
-     * @param surname - employee surname
-     * @param phoneNum - employee phone number
-     * @param birthDate - emloyee birth date
-     * @param manager - manager employee
-     * */
-    public Employee(String name, String surname, String phoneNum, String birthDate, String manager) {
-        super(name, surname, phoneNum, birthDate);
+     * @param name - employee's name
+     * @param surname - employee's surname
+     * @param phoneNum - employee's phone number
+     * @param birthYear - emloyee's birth date
+     * @param manager - employee's manager    */
+    public Employee(String name, String surname, String phoneNum, int birthYear, String manager) {
+        super(name, surname, phoneNum, birthYear);
         this.manager = manager;
     }
     /**
-     * Function getting a manager employee.
+     * Function getting a manager for a employee.
      * @return manager
      */
     public String getManager() {
