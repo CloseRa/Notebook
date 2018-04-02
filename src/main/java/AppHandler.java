@@ -88,11 +88,11 @@ public class AppHandler {
      */
     private void showPerson(Person person) {
         if (person instanceof Employee) {
-            System.out.println(EMPLOYEE + " " + NAME + person.getName() + ", " + SURNAME + person.getSurname()
+            System.out.println(NAME + person.getName() + ", " + SURNAME + person.getSurname()
                     + ", " + PHONENUMBER + person.getPhoneNum() + ", " + BIRTHYEAR + person.getBirthYear()
                     + ", " + MANAGER + ": " + ((Employee) person).getManager());
         } else if (person instanceof Manager) {
-            System.out.println(MANAGER + " " + NAME + person.getName() + ", " + SURNAME + person.getSurname() + ", " +
+            System.out.println(NAME + person.getName() + ", " + SURNAME + person.getSurname() + ", " +
                     PHONENUMBER + person.getPhoneNum() + ", " + BIRTHYEAR + person.getBirthYear() + ", " +
                     DEPARTMENT + ": " + ((Manager) person).getDepartment());
         }
