@@ -16,7 +16,7 @@ import static main.java.Constants.*;
  */
 public class AppHandler {
 
-    private Storage storage;
+    private Notebook notebook;
 
     private Scanner in = new Scanner(System.in);
 
@@ -25,7 +25,7 @@ public class AppHandler {
      */
     void start() {
 
-        storage = new Storage();
+        notebook = new Notebook();
 
         showAllPersons();
         String answer = "";
@@ -73,14 +73,14 @@ public class AppHandler {
      * Sorts persons by their birth years
      */
     private void sortPersonsByBirthYear() {
-        storage.getPersons().stream().sorted(Comparator.comparing(Person::getBirthYear)).forEach(this::showPerson);
+        notebook.getPersons().stream().sorted(Comparator.comparing(Person::getBirthYear)).forEach(this::showPerson);
     }
 
     /**
      * Sorts persons by their surnames
      */
     private void sortPersonsBySurname() {
-        storage.getPersons().stream().sorted(Comparator.comparing(Person::getSurname)).forEach(this::showPerson);
+        notebook.getPersons().stream().sorted(Comparator.comparing(Person::getSurname)).forEach(this::showPerson);
     }
 
     /**
@@ -102,7 +102,7 @@ public class AppHandler {
      * Iterates collection persons and calls the method showPerson
      */
     private void showAllPersons() {
-        for (Person person : storage.getPersons()) {
+        for (Person person : notebook.getPersons()) {
             showPerson(person);
         }
     }
@@ -139,7 +139,7 @@ public class AppHandler {
             System.out.println(ENTERMANAGER);
             String manager = in.nextLine();
 
-            storage.getPersons().add(new Employee(name, surname, phoneNum, birthDate, manager));
+            notebook.getPersons().add(new Employee(name, surname, phoneNum, birthDate, manager));
 
             showAllPersons();
         } else {
@@ -147,7 +147,7 @@ public class AppHandler {
             System.out.println(ENTERDEPARTMENT);
             String department = in.nextLine();
 
-            storage.getPersons().add(new Manager(name, surname, phoneNum, birthDate, department));
+            notebook.getPersons().add(new Manager(name, surname, phoneNum, birthDate, department));
 
             showAllPersons();
 
@@ -163,7 +163,7 @@ public class AppHandler {
         System.out.println(ENTERDELETE);
         String answer = in.nextLine();
         if (answer.equals(DELETE)) {
-            storage.getPersons().remove(storage.getPersons().size() - 1);
+            notebook.getPersons().remove(notebook.getPersons().size() - 1);
         }
     }
 
@@ -195,7 +195,7 @@ public class AppHandler {
      */
     private void findPersonByName(String name) {
         System.out.println(ENTERNAME);
-        for (Person person : storage.getPersons()) {
+        for (Person person : notebook.getPersons()) {
             if (person.getName().equals(name)) {
                 showPerson(person);
             }
@@ -207,7 +207,7 @@ public class AppHandler {
      */
     private void findPersonBySurname(String surname) {
         System.out.println(ENTERSURNAME);
-        for (Person person : storage.getPersons()) {
+        for (Person person : notebook.getPersons()) {
             if (person.getSurname().equals(surname)) {
                 showPerson(person);
             }
@@ -219,7 +219,7 @@ public class AppHandler {
      */
     private void findPersonByPhoneNum(String phoneNum) {
         System.out.println(ENTERPHONE);
-        for (Person person : storage.getPersons()) {
+        for (Person person : notebook.getPersons()) {
             if (person.getPhoneNum().equals(phoneNum)) {
                 showPerson(person);
             }
@@ -230,7 +230,7 @@ public class AppHandler {
      * Exits from programm, and saves all added persons
      */
     private void Exit() {
-        storage.Save();
+        notebook.Save();
         System.exit(0);
     }
 }
