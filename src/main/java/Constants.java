@@ -6,7 +6,7 @@ package main.java;
  * @autor Vlad
  */
 public interface Constants {
-    String STARTMESSAGE = "Commands :\n add - add person\n del - delete person\n find - find person by name surname" +
+    String STARTMESSAGE = "Commands :\n add - add person\n del - delete last added person\n find - find person by name surname" +
             "or by phone number\n" + " sort - sort by surname or birth date\n exit - close program.";
     String CHOOSE = "Add employee or manager?\n Commands:\n e - add employee\n m - add manager";
     String EMPLOYEE = "e";
