@@ -122,6 +122,7 @@ public class AppHandler {
         String surname = in.nextLine();
 
         System.out.println(ENTERBIRTHYEAR);
+        
         int birthDate = Integer.parseInt(in.nextLine());
         while (birthDate < 1930 || birthDate > 2018) {
             System.out.println(INPUTERROR);
@@ -158,12 +159,13 @@ public class AppHandler {
      * Deletes last added persons from collection
      */
     private void deletePerson() {
-
-        in = new Scanner(System.in);
-        System.out.println(ENTERDELETE);
-        String answer = in.nextLine();
-        if (answer.equals(DELETE)) {
-            notebook.getPersons().remove(notebook.getPersons().size() - 1);
+        while (!notebook.getPersons().isEmpty()) {
+            in = new Scanner(System.in);
+            System.out.println(ENTERDELETE);
+            String answer = in.nextLine();
+            if (answer.equals(DELETE)) {
+                notebook.getPersons().remove(notebook.getPersons().size() - 1);
+            }
         }
     }
 
